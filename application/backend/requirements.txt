@@ -1,0 +1,4 @@
+flask
+flask-cors
+pymysql
+openai  # 如果真的接API，或者用 requests 也可以
