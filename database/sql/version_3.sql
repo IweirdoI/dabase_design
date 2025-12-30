@@ -310,9 +310,23 @@ GRANT SELECT ON mydb.v_student_grades TO 'role_counselor'@'%';
 
 -- c. 成绩统计分析（辅助查看课程信息：course 表仅读）
 GRANT SELECT ON mydb.course TO 'role_counselor'@'%';
+-- 1. 修复 student 表：添加缺失的 dept_id 字段
+ALTER TABLE student ADD COLUMN dept_id VARCHAR(45) NOT NULL DEFAULT '1';
+-- 2. 修复 teacher 表：添加缺失的 role_type 字段 (如果是旧表可能也没有)
+-- 如果这句报错说 column exists，说明已经有了，忽略即可
+ALTER TABLE teacher ADD COLUMN role_type VARCHAR(45) NOT NULL DEFAULT 'teacher';
 -- 在数据库 query 窗口执行
+
+-- 1. 修复 student 表：添加缺失的 dept_id 字段
+ALTER TABLE student ADD COLUMN dept_id VARCHAR(45) NOT NULL DEFAULT '1';
+
+-- 2. 修复 teacher 表：添加缺失的 role_type 字段 (如果是旧表可能也没有)
+-- 如果这句报错说 column exists，说明已经有了，忽略即可
+ALTER TABLE teacher ADD COLUMN role_type VARCHAR(45) NOT NULL DEFAULT 'teacher';
+
+-- 3. 确保 department 表里有数据（否则注册时外键会报错）
 INSERT IGNORE INTO department (dept_id, name) VALUES ('1', '计算机学院');
+
+-- 4. 确保 class 表里有数据
 INSERT IGNORE INTO class (class_id, dept_id, name) VALUES ('1', '1', '软件工程1班');
-
-
 
