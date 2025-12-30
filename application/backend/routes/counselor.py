@@ -1,6 +1,6 @@
 # routes/counselor.py
 from flask import Blueprint, request, jsonify
-from db_helper import db
+from db_helper import db    # ✅ 正确写法
 from ai_service import generate_academic_report # 导入刚才写好的 AI 模块
 
 counselor_bp = Blueprint('counselor', __name__)

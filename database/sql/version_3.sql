@@ -310,7 +310,9 @@ GRANT SELECT ON mydb.v_student_grades TO 'role_counselor'@'%';
 
 -- c. 成绩统计分析（辅助查看课程信息：course 表仅读）
 GRANT SELECT ON mydb.course TO 'role_counselor'@'%';
-
+-- 在数据库 query 窗口执行
+INSERT IGNORE INTO department (dept_id, name) VALUES ('1', '计算机学院');
+INSERT IGNORE INTO class (class_id, dept_id, name) VALUES ('1', '1', '软件工程1班');
 
 
 

@@ -1,7 +1,7 @@
 # routes/teacher.py
 from flask import Blueprint, request, jsonify
-from db_helper import db
-from routes.auth import token_required
+from db_helper import db    # ✅ 正确写法
+from .auth import token_required
 
 teacher_bp = Blueprint('teacher', __name__)
 

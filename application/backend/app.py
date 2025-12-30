@@ -3,6 +3,7 @@
 from flask import Flask
 from flask_cors import CORS
 import config  # 导入配置
+from db_helper import db  # <--- 确保导入 db
 
 # 导入路由模块
 from routes.auth import auth_bp
@@ -26,6 +27,15 @@ app.register_blueprint(admin_bp, url_prefix='/api/admin')       # 管理员接�
 @app.route('/')
 def index():
     return "Teaching System Backend is Running!"
+
+@app.route('/test_db')
+def test_db_connection():
+    try:
+        # 执行简单查询
+        db.fetch_all("SELECT VERSION()")
+        return "<h1>✅ 数据库连接成功！</h1>"
+    except Exception as e:
+        return f"<h1>❌ 连接失败</h1><p>{str(e)}</p>"
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

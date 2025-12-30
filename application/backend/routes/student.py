@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from db_helper import db
+from db_helper import db    # ✅ 正确写法
 
 student_bp = Blueprint('student', __name__)
 
