@@ -5,7 +5,6 @@ from db_helper import db
 
 auth_bp = Blueprint('auth', __name__)
 
-
 @auth_bp.route('/login', methods=['POST'])
 def login():
     data = request.json
@@ -56,8 +55,7 @@ def login():
                 }
             })
         else:
-            return jsonify({"code": 401, "msg": "账号或密码错误"})
-
+            return jsonify({"code": 401, "msg": "账号或密码错误，或角色不匹配"})
     except Exception as e:
         print(f"Login Error: {e}")
         return jsonify({"code": 500, "msg": "服务器内部错误"})
